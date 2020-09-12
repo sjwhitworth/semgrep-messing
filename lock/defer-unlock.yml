@@ -1,0 +1,16 @@
+rules:
+- id: my_pattern_id
+  patterns:
+    - pattern-either: 
+      - pattern: |
+          $M.Lock()
+    - pattern-not-inside: |
+        ...
+        defer $M.Unlock()
+  message: |
+    Things that can be locked should have deferred unlocks immediately after the call to Lock. 
+  fix: |
+    $M.Lock()
+    defer $M.Unlock()
+  severity: WARNING
+  languages: [go]
