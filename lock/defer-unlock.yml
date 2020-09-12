@@ -1,5 +1,5 @@
 rules:
-- id: my_pattern_id
+- id: defer-unlocks
   patterns:
     - pattern-either: 
       - pattern: |
@@ -8,7 +8,7 @@ rules:
         ...
         defer $M.Unlock()
   message: |
-    Things that can be locked should have deferred unlocks immediately after the call to Lock. 
+    Objects that can be locked should have deferred unlocks immediately after the call to Lock. 
   fix: |
     $M.Lock()
     defer $M.Unlock()
